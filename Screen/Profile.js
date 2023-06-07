@@ -23,7 +23,7 @@ const Profile = () => {
         {userDetails?.name}
       </Text>
       <Text style={{ marginBottom: 20 }}>{userDetails?.email}</Text>
-      <Text style={{ marginBottom: 20 }}>
+      <Text style={{ marginBottom: 20, color: "green", fontWeight: "bold" }}>
         {userDetails?.isVerified ? "Account Verified" : "Account not Verified"}
       </Text>
       <TouchableOpacity style={styles.loginBtn} onPress={handleLogout}>

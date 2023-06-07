@@ -48,7 +48,8 @@ const Login = () => {
           setIsAuthenticated(true);
         }
         if (response[0] === 401) {
-          navigation.navigate("OTPVerify", { pageType: "login" });
+          ToastMessage("Account Not Verified. Please Verify the Account");
+          navigation.navigate("OTP", { pageType: "login" });
         }
         if (response[0] === 402) {
           ToastMessage("Incorrect Email or Password");

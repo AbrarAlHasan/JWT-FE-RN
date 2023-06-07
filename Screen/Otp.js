@@ -11,7 +11,6 @@ import { useNavigation } from "@react-navigation/native";
 import { otpVerify } from "../axios/Authentication";
 const OTP = ({ route }) => {
   const { pageType } = route.params;
-  console.log(pageType);
   const [otp, setOtp] = useState("");
 
   const navigation = useNavigation();
@@ -31,7 +30,7 @@ const OTP = ({ route }) => {
         if (response[0] === 200) {
           ToastMessage("OTP Verified");
           console.log(response);
-          if (pageType === "signUp") {
+          if (pageType === "signUp" || pageType === "login") {
             navigation.navigate("Login");
           }
           if (pageType === "forgotPass") {

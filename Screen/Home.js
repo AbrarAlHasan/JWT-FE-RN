@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   View,
+  ActivityIndicator,
 } from "react-native";
 import axios from "axios";
 
@@ -15,9 +16,11 @@ const Home = () => {
   const [filteredList, setFilteredList] = useState([]);
   const [skip, setSkip] = useState(0);
   const [disableLoadMore, setDisableLoadMore] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const limit = 3;
 
   const handleFilteredList = (originalData, initialTrigger) => {
+    console.log(skip);
     const newData = originalData.slice(skip, skip + limit);
     setFilteredList((prevList) => {
       if (initialTrigger) {
@@ -46,11 +49,14 @@ const Home = () => {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     getData();
+    setIsLoading(false);
   }, []);
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "#fff" }}>
+      {isLoading && <Text>Loading....</Text>}
       {filteredList?.map((data, idx) => {
         return (
           <View style={styles.container} key={idx}>
